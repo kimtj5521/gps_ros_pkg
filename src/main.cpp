@@ -5,6 +5,12 @@
 #include <iostream>
 #include <iomanip>
 
+<<<<<<< HEAD
+=======
+// test added
+// merge test
+
+>>>>>>> ca2e3a58be37be2cce8813f6be4932b24ddb505c
 using namespace std;
 
 Sensor_GPS m_gps;
@@ -25,6 +31,10 @@ void OnReceiveGPS(void)
             if(pBuffer[i]=='$' && pBuffer[i+3]=='G' && pBuffer[i+4]=='G' && pBuffer[i+5]=='A'){
                 m_gps.detect_GGA = true;
                 m_iGpsIndex = 0;
+<<<<<<< HEAD
+=======
+                //std::cout << "gga test " << std::endl;
+>>>>>>> ca2e3a58be37be2cce8813f6be4932b24ddb505c
             }
             if(m_gps.detect_GGA) {
                 m_gps.ExtractData(pBuffer[i]);
@@ -137,7 +147,6 @@ int main(int argc, char *argv[])
     nh.param<std::string>("port", port, "/dev/ttyACM0");
     nh.param("baudrate", baudrate, 115200);
 
-//    if(!m_gps.serial.Open((char*)port,115200)){
     if(!m_gps.serial.Open(const_cast<char*>(port.c_str()), baudrate)){
         cout << "device is not opened! " << endl;
         return 0;

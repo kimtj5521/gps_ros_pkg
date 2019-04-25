@@ -5,12 +5,6 @@
 #include <iostream>
 #include <iomanip>
 
-<<<<<<< HEAD
-=======
-// test added
-// merge test
-
->>>>>>> ca2e3a58be37be2cce8813f6be4932b24ddb505c
 using namespace std;
 
 Sensor_GPS m_gps;
@@ -20,7 +14,6 @@ std_msgs::Float64MultiArray gps_data;
 
 int m_iGpsIndex;
 
-//void OnReceiveGPS(void *p)
 void OnReceiveGPS(void)
 {
     int n = m_gps.serial.GetLength();
@@ -31,10 +24,6 @@ void OnReceiveGPS(void)
             if(pBuffer[i]=='$' && pBuffer[i+3]=='G' && pBuffer[i+4]=='G' && pBuffer[i+5]=='A'){
                 m_gps.detect_GGA = true;
                 m_iGpsIndex = 0;
-<<<<<<< HEAD
-=======
-                //std::cout << "gga test " << std::endl;
->>>>>>> ca2e3a58be37be2cce8813f6be4932b24ddb505c
             }
             if(m_gps.detect_GGA) {
                 m_gps.ExtractData(pBuffer[i]);
@@ -76,7 +65,6 @@ void OnReceiveGPS(void)
     }
 }
 
-//void publishGpsData(const ros::TimerEvent& ev)
 void publishGpsData(void)
 {
     gps_data.data.clear();

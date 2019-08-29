@@ -95,30 +95,37 @@ void publishGpsData(void)
         int_tmp = m_gps.m_iNumSatelliteinUse;
         gps_data.data.push_back(int_tmp); // at(8) : # of using satellite
 
+	double_tmp = m_gps.m_dHDOP;
+	gps_data.data.push_back(double_tmp); // at(9) : Horizontal dillusion of position (deviation)
+	double_tmp = m_gps.m_adAntennaAltitude[CURR];
+	gps_data.data.push_back(double_tmp); // at(10) : height (at virtual sea level)
+	double_tmp = m_gps.m_adGeoidalSeparation[CURR];
+	gps_data.data.push_back(double_tmp); // at(11) : height (difference between real sea level and virtual sea level)
+
         int_tmp = m_gps.m_iTimeHourRMC;
-        gps_data.data.push_back(int_tmp); // at(9) : RMC hour
+        gps_data.data.push_back(int_tmp); // at(12) : RMC hour
         int_tmp = m_gps.m_iTimeMinuteRMC;
-        gps_data.data.push_back(int_tmp); // at(10) : RMC minute
+        gps_data.data.push_back(int_tmp); // at(13) : RMC minute
         double_tmp = m_gps.m_dTimeSecondRMC;
-        gps_data.data.push_back(double_tmp); // at(11) : RMC second
+        gps_data.data.push_back(double_tmp); // at(14) : RMC second
 
         char_tmp = m_gps.m_acRMCStatus;
-        gps_data.data.push_back(char_tmp); // at(12) : RMC available status
+        gps_data.data.push_back(char_tmp); // at(15) : RMC available status
 
         double_tmp = m_gps.m_adLatitudeRMC[CURR];
-        gps_data.data.push_back(double_tmp); // at(13) : RMC latitude
+        gps_data.data.push_back(double_tmp); // at(16) : RMC latitude
         char_tmp = m_gps.m_acLatitudeDirectionRMC[CURR];
-        gps_data.data.push_back(char_tmp); // at(14) : RMC latitude direction
+        gps_data.data.push_back(char_tmp); // at(17) : RMC latitude direction
 
         double_tmp = m_gps.m_adLongitudeRMC[CURR];
-        gps_data.data.push_back(double_tmp); // at(15) : RMC longitude
+        gps_data.data.push_back(double_tmp); // at(18) : RMC longitude
         char_tmp = m_gps.m_acLongitudeDirectionRMC[CURR];
-        gps_data.data.push_back(char_tmp); // at(16) : RMC longitude direction
+        gps_data.data.push_back(char_tmp); // at(19) : RMC longitude direction
 
         double_tmp = m_gps.m_adSpeed_Knots *0.51444444;
-        gps_data.data.push_back(double_tmp); // at(17) : RMC speed (knots. 1 knots = 0.51444444 m/s)
+        gps_data.data.push_back(double_tmp); // at(20) : RMC speed (knots. 1 knots = 0.51444444 m/s)
         double_tmp = m_gps.m_adCourseOverGround_deg;
-        gps_data.data.push_back(double_tmp); // at(18) : RMC heading degree (north base clock-wise direction 0~360 deg)
+        gps_data.data.push_back(double_tmp); // at(21) : RMC heading degree (north base clock-wise direction 0~360 deg)
 
         gps_pub.publish(gps_data);
     }
